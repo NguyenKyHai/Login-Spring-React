@@ -1,0 +1,34 @@
+spring:
+    datasource:
+        url: jdbc:mysql://localhost:3306/spring_login
+        username: root
+        password: 123456
+
+    jpa:
+        show-sql: true
+        hibernate:
+            ddl-auto: update
+            naming-strategy: org.hibernate.cfg.ImprovedNamingStrategy
+        properties:
+            hibernate:
+                dialect: org.hibernate.dialect.MySQL8Dialect
+    security:
+      oauth2:
+        client:
+          registration:
+            google:
+              clientId: 793406760016-6a0k4g8d4ti37plqieqk4q4ochdog6er.apps.googleusercontent.com
+              clientSecret: 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
+              redirectUri: "{baseUrl}/oauth2/callback/{registrationId}"
+              scope:
+                - email
+                - profile
+app:
+  auth:
+    tokenSecret: secret
+    tokenExpirationMsec: 864000000
+  cors:
+    allowedOrigins: http://localhost:3000,http://localhost:8080
+  oauth2:
+    authorizedRedirectUris:
+      - http://localhost:3000/oauth2/redirect
